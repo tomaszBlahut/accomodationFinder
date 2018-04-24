@@ -1,5 +1,6 @@
 from __future__ import absolute_import
-from django.urls import path
+from django.urls import path, include
+from django.contrib import admin
 
 from . import views
 from . import home

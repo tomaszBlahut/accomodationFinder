@@ -141,6 +141,30 @@
 
         window.onload = InitializeMap;
 
+        //endpoint request
+        function as_view() {
+            
+            var addressField = "Warszawa";
+            var shopsInCity = document.getElementById('shopsInCity');
+            shopsInCity.innerHTML = "";
+
+            $.ajax({
+                url: "http://127.0.0.1:5000/shop/",
+                cache: false,
+                success: function (responseData) {
+                    for(i = 0; i < responseData.length; ++i) {
+                        var currentShop = responseData[i];
+                        shopsInCity.innerHTML += "<p>";
+                        shopsInCity.innerHTML += currentShop[0] + ". ";
+                        shopsInCity.innerHTML += "<i>" + currentShop[1] + "</i>, ";
+                        shopsInCity.innerHTML += currentShop[2] + ", ";
+                        shopsInCity.innerHTML += currentShop[3] + ", ";
+                        shopsInCity.innerHTML += currentShop[4];
+                        shopsInCity.innerHTML += "</p>";
+                    }
+                }
+            });
+        }
     </script>
 </head>
 
@@ -158,7 +182,9 @@
             <input id="addressinput" class="drugi" type="text" placeholder="Radius..." path style="width: 200px" />
             <input id="Button1" class="button button5" type="button" value="Upload" onclick="" style="margin-left:20px" />
         </div>
-
+        <div id="shopsInCity" style="background-color: lightblue;">
+            
+        </div>
     </div>
 
     <div class="main">
@@ -181,7 +207,7 @@
             </table>
         </div>
     </div>
-    <div  >
+    <div>
         <h1>Find shop in your city</h1>
         
             <div style="width: 30%; margin: 0 auto;">
@@ -190,7 +216,7 @@
             </div>
         
     </div>
-
-
+    
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </body>
 </html>

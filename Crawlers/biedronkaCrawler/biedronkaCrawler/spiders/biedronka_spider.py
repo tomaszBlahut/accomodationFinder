@@ -23,11 +23,11 @@ class BiedronkaSpider(scrapy.Spider):
 
                 'latitude':
                 response.css(".shopMapContainer::attr(data-latitude)")
-                .extract(),
+                .extract_first(),
 
                 'longitude':
                 response.css(".shopMapContainer::attr(data-longitude)")
-                .extract()
+                .extract_first()
             }
         else:
             self.shops_with_404 += 1

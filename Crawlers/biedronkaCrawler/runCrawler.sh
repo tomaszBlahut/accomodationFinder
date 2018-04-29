@@ -1,0 +1,1 @@
+scrapy crawl biedronka -o shops.json

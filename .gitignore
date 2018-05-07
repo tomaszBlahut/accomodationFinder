@@ -91,6 +91,7 @@ env.bak/
 venv.bak/
 AppVenv/
 ApiVenv/
+CrawlersVenv/
 
 # Spyder project settings
 .spyderproject

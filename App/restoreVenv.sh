@@ -1,4 +1,4 @@
 #!/bin/bash
 virtualenv AppVenv
 ./AppVenv/bin/activate
-pip install -r requirements.txt
+pip3 install -r requirements.txt

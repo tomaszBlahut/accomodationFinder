@@ -153,7 +153,7 @@
                 cache: false,
                 success: function (responseData) {
                     for(let i = 0; i < responseData.length; ++i) {
-                        let currentShop = responseData[i];
+                        const currentShop = responseData[i];
                         shopsInCity.innerHTML += "<p>";
                         shopsInCity.innerHTML += currentShop[0] + ". ";
                         shopsInCity.innerHTML += "<i>" + currentShop[1] + "</i>, ";

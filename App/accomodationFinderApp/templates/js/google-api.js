@@ -2,8 +2,8 @@ let map;
 let geocoder;
 
 function InitializeMap() {
-    let latlng = new google.maps.LatLng(50.050, 19.945);
-    let myOptions =
+    const latlng = new google.maps.LatLng(50.050, 19.945);
+    const myOptions =
         {
             zoom: 12,
             center: latlng,

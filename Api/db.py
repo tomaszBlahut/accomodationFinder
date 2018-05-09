@@ -3,14 +3,15 @@ import psycopg2
 
 with open('config/config.json') as json_data:
     config = json.load(json_data)
-    
-dbconfig = config["database"]
+
+db_config = config["database"]
+
 
 def execute(query):
     conn = None
     try:
-        conn = psycopg2.connect(host=dbconfig["host"], database=dbconfig["dbname"],
-                                user=dbconfig["username"], password=dbconfig["password"])
+        conn = psycopg2.connect(host=db_config["host"], database=db_config["db_name"],
+                                user=db_config["username"], password=db_config["password"])
         cur = conn.cursor()
         cur.execute(query)
         records = cur.fetchall()

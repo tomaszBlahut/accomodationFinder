@@ -1,29 +1,28 @@
-var map;
-var geocoder;
+let map;
+let geocoder;
 
 function InitializeMap() {
-    var latlng = new google.maps.LatLng(50.050, 19.945);
-    var myOptions =
-    {
-        zoom: 12,
-        center: latlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDefaultUI: true
-    };
+    const latlng = new google.maps.LatLng(50.050, 19.945);
+    const myOptions =
+        {
+            zoom: 12,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true
+        };
     map = new google.maps.Map(document.getElementById("map"), myOptions);
 }
 
-function FindLocaiton() 
-{
+function FindLocation() {
     geocoder = new google.maps.Geocoder();
     InitializeMap();
 
-    var address = document.getElementById("addressinput").value;
+    let address = document.getElementById("addressinput").value;
 
-    geocoder.geocode({'address': address }, function (results, status) {
+    geocoder.geocode({'address': address}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
+            let marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location
             });
@@ -36,7 +35,7 @@ function FindLocaiton()
 
 
 function Button1_onclick() {
-    FindLocaiton();
+    FindLocation();
 }
 
 window.onload = InitializeMap;

@@ -113,7 +113,7 @@
             map = new google.maps.Map(document.getElementById("map"), myOptions);
         }
 
-        function FindLocaiton() {
+        function FindLocation() {
             geocoder = new google.maps.Geocoder();
             InitializeMap();
 
@@ -136,7 +136,7 @@
 
 
         function Button1_onclick() {
-            FindLocaiton();
+            FindLocation();
         }
 
         window.onload = InitializeMap;
@@ -152,8 +152,8 @@
                 url: "http://127.0.0.1:5000/shop/",
                 cache: false,
                 success: function (responseData) {
-                    for(i = 0; i < responseData.length; ++i) {
-                        var currentShop = responseData[i];
+                    for(let i = 0; i < responseData.length; ++i) {
+                        const currentShop = responseData[i];
                         shopsInCity.innerHTML += "<p>";
                         shopsInCity.innerHTML += currentShop[0] + ". ";
                         shopsInCity.innerHTML += "<i>" + currentShop[1] + "</i>, ";
@@ -178,7 +178,7 @@
 
     <div class="menu">
         
-        <div style="margin-left: 15% ; padding-top: 60px"">
+        <div style="margin-left: 15% ; padding-top: 60px">
             <input id="addressinput" class="drugi" type="text" placeholder="Radius..." path style="width: 200px" />
             <input id="Button1" class="button button5" type="button" value="Upload" onclick="" style="margin-left:20px" />
         </div>

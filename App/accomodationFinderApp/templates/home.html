@@ -94,46 +94,20 @@
             float: left;
             padding: 15px;
         }
+
+        html,
+        body,
+        #map-canvas {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+        }
     </style>
 
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script language="javascript" type="text/javascript">
 
-        var map;
-        var geocoder;
-        function InitializeMap() {
 
-            var latlng = new google.maps.LatLng(50.050, 19.945);
-            var myOptions =
-                {
-                    zoom: 12,
-                    center: latlng,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    disableDefaultUI: true
-                };
-            map = new google.maps.Map(document.getElementById("map"), myOptions);
-        }
-
-        function FindLocation() {
-            geocoder = new google.maps.Geocoder();
-            InitializeMap();
-
-            var address = document.getElementById("addressinput").value;
-            geocoder.geocode({ 'address': address }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    map.setCenter(results[0].geometry.location);
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location
-                    });
-
-                }
-                else {
-                    alert("Geocode was not successful for the following reason: " + status);
-                }
-            });
-
-        }
 
 
         function Button1_onclick() {
@@ -144,7 +118,7 @@
 
         //endpoint request
         function as_view() {
-            
+
             var addressField = "Warszawa";
             var shopsInCity = document.getElementById('shopsInCity');
             shopsInCity.innerHTML = "";
@@ -193,16 +167,12 @@
             <table>
                 <tr>
                     <td>
-                        <input id="addressinput" type="text" placeholder="Search the map" path style="width: 700px" />
-                    </td>
-                    <td>
-                        <input id="Button1" class="button button5" type="button" value="Find" onclick="return Button1_onclick()" />
+                       <div class="container"><input id="pac-input" class="controls" type="text" placeholder="Search Box"></div>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <div id="map" style="height: 500px">
-                        </div>
+                    <td >
+                        <div class="container" id="map-canvas" style="height:400px; width: 600px"></div>
                     </td>
                 </tr>
             </table>
@@ -219,5 +189,6 @@
     </div>
 
     <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/google-api.js" %}"></script>
 </body>
 </html>

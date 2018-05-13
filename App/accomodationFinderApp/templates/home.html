@@ -96,15 +96,14 @@
         }
 
         html,
-        body,
-        #map-canvas {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-        }
+body,
+#map-canvas {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
     </style>
-    <script src="{% static "js/jquery.min.js" %}"></script>
-    <script src="{% static "js/google-api.js" %}"></script>
+
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script language="javascript" type="text/javascript">
 
@@ -168,12 +167,12 @@
             <table>
                 <tr>
                     <td>
-                       <div class="container"><input id="pac-input" class="controls" type="text" placeholder="Search Box"></div>
+                        <input id="pac-input" class="controls" type="text" placeholder="Search Box" >
                     </td>
                 </tr>
                 <tr>
                     <td >
-                        <div class="container" id="map-canvas" style="height:400px; width: 600px"></div>
+                        <div class="container" id="map-canvas" style="height:400px; width:600px"></div>
                     </td>
                 </tr>
             </table>
@@ -189,6 +188,7 @@
         
     </div>
 
-
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/google-api.js" %}"></script>
 </body>
 </html>

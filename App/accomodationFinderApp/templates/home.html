@@ -3,148 +3,13 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        h1 {
-            align-content: center;
-            text-align: center;
-            margin: 20px;
-        }
-
-        body {
-            background-color: WhiteSmoke;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        li {
-            float: left;
-        }
-
-            li a {
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-            }
-
-                li a:hover {
-                    background-color: #111;
-                }
-
-        .button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 13px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 13px;
-            margin: 4px 2px;
-            -webkit-transition-duration: 0.4s; /* Safari */
-            transition-duration: 0.4s;
-            cursor: pointer;
-        }
-
-        .button5 {
-            background-color: white;
-            color: black;
-            border: 2px solid #555555;
-        }
-
-            .button5:hover {
-                background-color: #555555;
-                color: white;
-            }
-        
-        input[type=text] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 3px solid #ccc;
-            -webkit-transition: 0.5s;
-            transition: 0.5s;
-            outline: none;
-        }
-
-            input[type=text]:focus {
-                border: 3px solid #555;
-            }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        .menu {
-            width: 35%;
-            float: left;
-            padding: 15px;
-        }
-
-        .main {
-            width: 65%;
-            float: left;
-            padding: 15px;
-        }
-    </style>
-
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}" />
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script language="javascript" type="text/javascript">
-
-        var map;
-        var geocoder;
-        function InitializeMap() {
-
-            var latlng = new google.maps.LatLng(50.050, 19.945);
-            var myOptions =
-                {
-                    zoom: 12,
-                    center: latlng,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    disableDefaultUI: true
-                };
-            map = new google.maps.Map(document.getElementById("map"), myOptions);
-        }
-
-        function FindLocation() {
-            geocoder = new google.maps.Geocoder();
-            InitializeMap();
-
-            var address = document.getElementById("addressinput").value;
-            geocoder.geocode({ 'address': address }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    map.setCenter(results[0].geometry.location);
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location
-                    });
-
-                }
-                else {
-                    alert("Geocode was not successful for the following reason: " + status);
-                }
-            });
-
-        }
-
-
-        function Button1_onclick() {
-            FindLocation();
-        }
-
-        window.onload = InitializeMap;
 
         //endpoint request
         function as_view() {
-            
+
             var addressField = "Warszawa";
             var shopsInCity = document.getElementById('shopsInCity');
             shopsInCity.innerHTML = "";
@@ -167,6 +32,8 @@
             });
         }
     </script>
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/google-api.js" %}"></script>
 </head>
 
 <body>
@@ -193,16 +60,12 @@
             <table>
                 <tr>
                     <td>
-                        <input id="addressinput" type="text" placeholder="Search the map" path style="width: 700px" />
-                    </td>
-                    <td>
-                        <input id="Button1" class="button button5" type="button" value="Find" onclick="return Button1_onclick()" />
+                        <input id="pac-input" class="controls" type="text" placeholder="Search Box" >
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <div id="map" style="height: 500px">
-                        </div>
+                    <td >
+                        <div class="container" id="map-canvas" style="height:400px; width:600px"></div>
                     </td>
                 </tr>
             </table>
@@ -218,6 +81,7 @@
         
     </div>
 
-    <script src="{% static "js/jquery.min.js" %}"></script>
+
+
 </body>
 </html>

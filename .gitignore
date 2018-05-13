@@ -109,3 +109,4 @@ CrawlersVenv/
 # vs tools
 .vs
 .vscode
+.idea

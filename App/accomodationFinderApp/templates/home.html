@@ -7,7 +7,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script src="{% static "js/jquery.min.js" %}"></script>
     <script src="{% static "js/google-api.js" %}"></script>
-    <script src="{% static "js/endpoint-request-shops.js" %}"></script>
+    <script src="{% static "js/view-for-shops.js" %}"></script>
 </head>
 
 <body>
@@ -49,7 +49,7 @@
         <h1>Find shop in your city</h1>
             <div class="shops" >
                 <input id="addressinput" type="address" placeholder="City..."/>
-                <input id="Button1" class="button button5" type="button" value="Upload" onclick="as_view()" />
+                <input id="Button1" class="button button5" type="button" value="Upload" onclick="show_shops()" />
             </div>
 
     </div>

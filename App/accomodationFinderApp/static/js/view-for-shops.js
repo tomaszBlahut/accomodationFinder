@@ -1,7 +1,7 @@
-function as_view() {
+function show_shops() {
 
-    var addressField = "Warszawa";
-    var shopsInCity = document.getElementById('shopsInCity');
+    const addressField = "Warszawa";
+    const shopsInCity = document.getElementById('shopsInCity');
     shopsInCity.innerHTML = "";
 
     $.ajax({

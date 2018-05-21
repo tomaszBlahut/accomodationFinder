@@ -125,3 +125,5 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'accomodationFinderApp', 'static')
 ]
+
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '127.0.0.1:5000/shop/']

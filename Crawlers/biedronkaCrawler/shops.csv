@@ -1,0 +1,99 @@
+id,longitude,city,latitude,street
+2878,17.9973022,Bydgoszcz,53.1215359,ul. Długa 9
+2968,22.8925849,Łęczna,51.2969316,ul. Armii Krajowej 1
+2969,18.6148591,Gdańsk,54.3277181,ul. Fieldorfa 2
+2970,23.3469167,Sejny,54.1059478,ul. 1 Maja 6
+2971,20.9165049,Warszawa,52.2477550,ul. Wrocławska 8
+2972,17.9350389,Opole,50.6676889,ul.  
+2973,17.0369199,Żórawina,50.9818760,ul. Wrocławska 3C
+2974,15.5596679,Bolesławiec,51.2655372,ul. Wesoła 23B
+2975,21.1522810,Warszawa,52.2228430,ul. Wydawnicza 56/58
+2976,21.3976157,Ostrowiec Świętokrzyski,50.9251466,ul. Sandomierska 89
+2977,14.7513715,Dziwnów,54.0224578,ul. Słowackiego 8A
+2978,23.5187000,Sokółka,53.3985080,ul. Jana Pawła II 1
+2979,20.7637793,Skarżysko Kamienna,51.1052027,ul. 1-go Maja 16
+2980,19.9698411,Włoszczowa,50.8521069,ul. Partyzantów 9
+2981,23.1504399,Białystok,53.1254209,ul. Kaczorowskiego 7
+2982,18.5730775,Gdańsk,54.4104744,ul. Doroszyńskiego 28A
+2983,18.1473112,Wieruszów,51.2970073,ul. Wrocławska 18
+2984,19.1976080,Łęczyca,52.0644088,ul. Poznańska 37
+2985,14.8125744,Słońsk,52.5641168,ul. 3 Lutego 60
+2986,19.9476736,Kraków,50.0963773,ul. Siewna 46
+2987,19.7362610,Lubawa,53.5025670,ul. Wyzwolenia 3A
+2988,22.2911765,Siedlce,52.1608925,ul. Kleeberga 6
+2989,20.5689383,Kije,50.6035058,ul. Piastowska 1
+2990,19.9385540,Kraków,50.0863139,ul. Prądnicka 65
+2991,18.6227956,Toruń,53.0153346,ul. Waryńskiego 13
+2992,15.2414220,Lubniewice,52.5101279,ul. Jana Pawła II 5
+2993,17.0341503,Wrocław,51.0967152,ul. Sucha 1
+2994,20.9672745,Warszawa,52.3191555,ul. Światowida 20
+2995,17.9350389,Opole,50.6676889,ul.  
+2996,15.5789369,Międzyrzecz,52.4469469,ul. Chrobrego 2A
+2997,20.8149169,Zakliczyn,49.8585875,ul. Polna 2
+2998,21.0436654,Warszawa,52.1464074,ul. Dereniowa 10/U4
+2999,14.8906267,Pyrzyce,53.1391426,ul. Adama Mickiewicza 2A
+3000,19.1340637,Częstochowa,50.7820017,ul. Jagiellońska 35
+3001,18.6870081,Żory,50.0425023,ul. Wodzisławska 11
+3002,21.7377781,Sandomierz,50.6974944,ul. Kwiatkowskiego 67
+3003,18.3465369,Reda,54.6063540,ul. Pucka 5
+3004,16.5034621,Świdnica,50.8409089,ul.  
+3005,18.5054415,Lublewo Gdańskie,54.2886547,ul. Dojazdowa 2
+3006,19.1278249,Łodygowice,49.7299547,ul. Żywiecka 
+3007,19.0618441,Czeladź,50.3088447,ul. Dehnelów 41
+3008,18.7246601,Nowe,53.6453179,ul. Bydgoska 18
+3009,20.2952912,Glinojeck,52.8196710,ul. Płocka 30
+3010,17.9546535,Opole,50.6545079,ul. Jagiellonów 91
+3011,17.9999335,Zawada,50.7193164,ul. Bocianowa 54
+3012,19.0723301,Włocławek,52.6559320,ul. Zielony Rynek 4
+3013,19.4765225,Łódź,51.7108682,ul. Paradna 39
+3014,22.9347342,Stara Kornica,52.1839810,ul. Stara Kornica 159
+3015,15.4458469,Małomice,51.5542460,ul. Małynicza 5
+3016,16.9792311,Kobylnica,54.4314990,ul. Główna 2D
+3017,18.6129839,Pyskowice,50.4002013,ul. Toszecka 40
+3018,16.5539296,Czarnków,52.8969322,ul. Kościuszki 93
+3019,20.9582984,Gromink,49.8320728,ul. Krynicka 53
+3020,19.7996649,Bielsk,52.6690110,ul. Płocka 28
+3021,19.2467460,Dąbrowa Górnicza,50.3159563,ul. Majewskiego 314
+3022,21.0472805,Warszawa,52.1873667,ul. Mangalia 2A
+3023,20.9529899,Warszawa,52.3441319,ul. Prząśniczek 8
+3024,19.4991559,Kamieńsk,51.1946000,ul. Słowackiego 121
+3025,16.5442058,Borne Sulinowo,53.5822353,ul. Aleja Niepodleglości 
+3026,22.8935245,Łapy,52.9826421,ul. Żwirki i Wigury 25A
+3027,19.9489584,Kraków,50.0887988,ul. Grażyny 4
+3028,16.1892021,Lwówek,52.4531294,ul. Pniewska 53B
+3029,17.6682242,Biała,50.3863124,ul. Parcela 13
+3030,19.3897580,Łódź,51.7376260,ul. Maratońska 93
+3031,21.2200679,Józefów,52.1483710,ul. Armii Krajowej 3A
+3032,18.6021950,Gdańsk,54.4119000,ul. Dąbrowszczaków 20
+3033,21.9850369,Rzeszów,50.0601817,ul.  
+3034,21.4409562,Pionki,51.4719629,ul. 15 Stycznia 4A
+3035,20.8686479,Kiełpin Poduchowny,52.3464872,ul. Warszawska 201/203
+3036,19.4916558,Wadowice,49.8909470,ul. Wojska Polskiego 14
+3037,19.2774905,Jaworzno,50.1976250,ul. Olszewskiego 5
+3038,17.1720064,Zaniemyśl,52.1586841,ul. Czarniecka 
+3039,21.9728976,Rzeszów,50.0424096,ul. Stojałowskiego 6
+3040,18.3474800,Osie,53.5964380,ul. Dworcowa 9D
+3041,21.6674693,Tarnobrzeg,50.5657628,ul. Mickiewicza 40
+3042,20.8684344,Warszawa,52.1942136,ul. Wojciechowskiego 41
+3043,20.9896002,Warszawa,52.1856329,ul. Konstruktorska 10C
+3044,17.0311850,Wrocław,51.1028516,ul. Świdnicka 40
+3045,20.6135702,Błonie,52.1954271,ul. Romualda Traugutta 
+3046,19.8316526,Wolbórz,51.4979886,ul. Modrzewskiego 78
+3047,21.4126090,Brzostek,49.8802274,ul.  
+3048,20.6402635,Kielce,50.8620597,ul. Tarnowska 4
+3049,20.0094958,Tomaszów Mazowiecki,51.5270620,ul. Polna 26
+3050,21.6850220,Tarnobrzeg,50.5779130,ul. Zwierzyniecka 15A
+3051,21.9695878,Rzeszów,49.9616290,ul. Budziwojska 465
+3052,18.7674925,Zabrze,50.3150348,ul. Franciszkańska 22
+3053,20.9887898,Szczytno,53.5544527,ul. ul Przemysłowa 23
+3054,17.0680976,Swarzędz,52.3906218,ul. Planetarna 18
+3055,17.7708685,Witkowo,52.4370587,ul. Jana Pawła II 23
+3056,16.9737697,Prusice,51.3646535,ul. Wrocławska 67
+3057,16.9901848,Krajenka,53.2974560,ul. Mickiewicza 4
+3058,19.6360933,Andrespol,51.7269772,ul. Rokicińska 125
+3059,19.4754449,Łódź,51.8066596,ul. Tęczowa 1
+3060,19.3227625,Konstantynów Łódzki,51.7496539,ul. Jana Pawła II 11/13
+3061,19.1083690,Szczerców,51.3292549,ul. Praga 25
+3062,19.4744675,Łódź,51.7176349,ul. Łazowskiego 44
+3063,22.4427080,Kock,51.6457068,ul. gen. Franciszka Kleeberga 4
+3064,19.0634641,Częstochowa,50.7988170,ul. Główna 140

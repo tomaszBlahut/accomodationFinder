@@ -2,7 +2,8 @@ from math import radians, sin, cos, sqrt, asin, atan2, pi, radians, degrees
 
 
 class HaversineFormula:
-    earth_radius = 6372800
+    EARTH_RADIUS = 6372800
+    RIGHT_ANGLE = 90
 
     @staticmethod
     def calculate_distance_beetween_two_points(longitude1, longitude2, latitude1, latitude2):
@@ -14,36 +15,40 @@ class HaversineFormula:
         inner_hav = sin(latitude_distance_radians / 2) ** 2 + cos(latitude1_radians) * cos(latitude2_radians) * sin(
             longitude_distance_radians / 2) ** 2
 
-        return 2 * HaversineFormula.earth_radius * asin(sqrt(inner_hav))
+        return 2 * HaversineFormula.EARTH_RADIUS * asin(sqrt(inner_hav))
 
     @staticmethod
     def calculate_square_bounds(longitude, latitude, radius):
-        ang_dist = radius / HaversineFormula.earth_radius
+        ang_dist = radius / HaversineFormula.EARTH_RADIUS
 
         latitude = radians(latitude)
         longitude = radians(longitude)
 
-        bearing = radians(0)
-        latitude_up = asin(sin(latitude) * cos(ang_dist) + cos(latitude) * sin(ang_dist) * cos(bearing))
-        longitude_up = longitude + atan2(sin(bearing) * sin(ang_dist) * cos(latitude),
-                                         cos(ang_dist) - sin(latitude) * sin(latitude_up))
+        coordinates_up = HaversineFormula.calculate_end_latitude_and_longitude(latitude, longitude, ang_dist, 0)
+        coordinates_right = HaversineFormula.calculate_end_latitude_and_longitude(latitude, longitude, ang_dist, 1)
+        coordinates_down = HaversineFormula.calculate_end_latitude_and_longitude(latitude, longitude, ang_dist, 2)
+        coordinates_left = HaversineFormula.calculate_end_latitude_and_longitude(latitude, longitude, ang_dist, 3)
 
-        bearing = radians(90)
-        latitude_right = asin(sin(latitude) * cos(ang_dist) + cos(latitude) * sin(ang_dist) * cos(bearing))
-        longitude_right = longitude + atan2(sin(bearing) * sin(ang_dist) * cos(latitude),
-                                            cos(ang_dist) - sin(latitude) * sin(latitude_right))
+        return {"up": {"longitude": degrees(coordinates_up[0]), "latitude": degrees(coordinates_up[1])},
+                "right": {"longitude": degrees(coordinates_right[0]), "latitude": degrees(coordinates_right[1])},
+                "down": {"longitude": degrees(coordinates_down[0]), "latitude": degrees(coordinates_down[1])},
+                "left": {"longitude": degrees(coordinates_left[0]), "latitude": degrees(coordinates_left[1])}}
 
-        bearing = radians(180)
-        latitude_down = asin(sin(latitude) * cos(ang_dist) + cos(latitude) * sin(ang_dist) * cos(bearing))
-        longitude_down = longitude + atan2(sin(bearing) * sin(ang_dist) * cos(latitude),
-                                           cos(ang_dist) - sin(latitude) * sin(latitude_down))
+    @staticmethod
+    def calculate_end_latitude(start_latitude, ang_dist, bearing):
+        return asin(sin(start_latitude) * cos(ang_dist) + cos(start_latitude) * sin(ang_dist) * cos(bearing))
 
-        bearing = radians(270)
-        latitude_left = asin(sin(latitude) * cos(ang_dist) + cos(latitude) * sin(ang_dist) * cos(bearing))
-        longitude_left = longitude + atan2(sin(bearing) * sin(ang_dist) * cos(latitude),
-                                           cos(ang_dist) - sin(latitude) * sin(latitude_left))
+    @staticmethod
+    def calculate_end_longitude(start_latitude, end_latitude, start_longitude, ang_dist, bearing):
+        return start_longitude + atan2(sin(bearing) * sin(ang_dist) * cos(start_latitude),
+                                       cos(ang_dist) - sin(start_latitude) * sin(end_latitude))
 
-        return {"up": {"longitude": degrees(longitude_up), "latitude": degrees(latitude_up)},
-                "right": {"longitude": degrees(longitude_right), "latitude": degrees(latitude_right)},
-                "down": {"longitude": degrees(longitude_down), "latitude": degrees(latitude_down)},
-                "left": {"longitude": degrees(longitude_left), "latitude": degrees(latitude_left)}}
+    @staticmethod
+    def calculate_end_latitude_and_longitude(start_latitude, start_longitude, ang_dist, bearing_factor):
+        bearing = radians(bearing_factor * HaversineFormula.RIGHT_ANGLE)
+
+        end_latitude = HaversineFormula.calculate_end_latitude(start_latitude, ang_dist, bearing)
+        end_longitude = HaversineFormula.calculate_end_longitude(start_latitude, end_latitude, start_longitude,
+                                                                 ang_dist, bearing)
+
+        return end_longitude, end_latitude

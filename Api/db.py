@@ -10,8 +10,10 @@ db_config = config["database"]
 def execute(query):
     conn = None
     try:
-        conn = psycopg2.connect(host=db_config["host"], database=db_config["db_name"],
-                                user=db_config["username"], password=db_config["password"])
+        conn = psycopg2.connect(host=db_config["host"],
+                                database=db_config["db_name"],
+                                user=db_config["username"],
+                                password=db_config["password"])
         cur = conn.cursor()
         cur.execute(query)
         records = cur.fetchall()

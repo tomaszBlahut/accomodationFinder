@@ -1,147 +1,13 @@
 {% load static %}
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        h1 {
-            align-content: center;
-            text-align: center;
-            margin: 20px;
-        }
-
-        body {
-            background-color: WhiteSmoke;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        li {
-            float: left;
-        }
-
-            li a {
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-            }
-
-                li a:hover {
-                    background-color: #111;
-                }
-
-        .button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 13px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 13px;
-            margin: 4px 2px;
-            -webkit-transition-duration: 0.4s; /* Safari */
-            transition-duration: 0.4s;
-            cursor: pointer;
-        }
-
-        .button5 {
-            background-color: white;
-            color: black;
-            border: 2px solid #555555;
-        }
-
-            .button5:hover {
-                background-color: #555555;
-                color: white;
-            }
-        
-        input[type=text] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 3px solid #ccc;
-            -webkit-transition: 0.5s;
-            transition: 0.5s;
-            outline: none;
-        }
-
-            input[type=text]:focus {
-                border: 3px solid #555;
-            }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        .menu {
-            width: 35%;
-            float: left;
-            padding: 15px;
-        }
-
-        .main {
-            width: 65%;
-            float: left;
-            padding: 15px;
-        }
-
-        html,
-        body,
-        #map-canvas {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static "css/layout.css" %}" />
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script src="{% static "js/jquery.min.js" %}"></script>
     <script src="{% static "js/google-api.js" %}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-    <script language="javascript" type="text/javascript">
-
-
-
-
-        function Button1_onclick() {
-            FindLocation();
-        }
-
-        window.onload = InitializeMap;
-
-        //endpoint request
-        function as_view() {
-
-            var addressField = "Warszawa";
-            var shopsInCity = document.getElementById('shopsInCity');
-            shopsInCity.innerHTML = "";
-
-            $.ajax({
-                url: "http://127.0.0.1:5000/shop/",
-                cache: false,
-                success: function (responseData) {
-                    for(let i = 0; i < responseData.length; ++i) {
-                        const currentShop = responseData[i];
-                        shopsInCity.innerHTML += "<p>";
-                        shopsInCity.innerHTML += currentShop[0] + ". ";
-                        shopsInCity.innerHTML += "<i>" + currentShop[1] + "</i>, ";
-                        shopsInCity.innerHTML += currentShop[2] + ", ";
-                        shopsInCity.innerHTML += currentShop[3] + ", ";
-                        shopsInCity.innerHTML += currentShop[4];
-                        shopsInCity.innerHTML += "</p>";
-                    }
-                }
-            });
-        }
-    </script>
+    <script src="{% static "js/view-for-shops.js" %}"></script>
 </head>
 
 <body>
@@ -153,18 +19,18 @@
     </div>
 
     <div class="menu">
-        
-        <div style="margin-left: 15% ; padding-top: 60px">
-            <input id="addressinput" class="drugi" type="text" placeholder="Radius..." path style="width: 200px" />
-            <input id="Button1" class="button button5" type="button" value="Upload" onclick="" style="margin-left:20px" />
+
+        <div class="google_maps">
+            <input id="addressinput" type="address" placeholder="Radius..." />
+            <input id="Button1" class="button button5" type="button" value="Upload" onclick="" />
         </div>
-        <div id="shopsInCity" style="background-color: lightblue;">
-            
+        <div id="shopsInCity">
+
         </div>
     </div>
 
     <div class="main">
-        <div class="container" style="align-content: center; align-items: center;">
+        <div class="container" >
             <table>
                 <tr>
                     <td>
@@ -173,7 +39,7 @@
                 </tr>
                 <tr>
                     <td >
-                        <div class="container" id="map-canvas" style="height:400px; width: 600px"></div>
+                        <div class="container" id="map-canvas"></div>
                     </td>
                 </tr>
             </table>
@@ -181,12 +47,11 @@
     </div>
     <div>
         <h1>Find shop in your city</h1>
-        
-            <div style="width: 30%; margin: 0 auto;">
-                <input id="addressinput" class="drugi" type="text" placeholder="City..." path style="width: 200px" />
-                <input id="Button1" class="button button5" type="button" value="Upload" onclick="as_view()" style="margin-left:20px" />
+            <div class="shops" >
+                <input id="addressinput" type="address" placeholder="City..."/>
+                <input id="Button1" class="button button5" type="button" value="Upload" onclick="show_shops()" />
             </div>
-        
+
     </div>
 
 

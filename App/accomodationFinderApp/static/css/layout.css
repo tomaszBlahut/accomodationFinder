@@ -1,4 +1,128 @@
 h1 {
-    color: green;
+    align-content: center;
+    text-align: center;
+    margin: 20px;
 }
 
+body {
+    background-color: WhiteSmoke;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+    li a:hover {
+        background-color: #111;
+    }
+
+.button {
+    background-color: white;
+    border: 2px solid #555555;
+    color: black;
+    padding: 13px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.button:hover {
+    background-color: #555555;
+    color: white;
+}
+
+input[type=text] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+input[type=address] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=address]:focus {
+    border: 3px solid #555;
+}
+
+.shops{
+    width: 30%;
+    margin: 0 auto;
+}
+* {
+    box-sizing: border-box;
+}
+
+.addressinput {
+    width: 20px;
+}
+
+.menu {
+    width: 35%;
+    float: left;
+    padding: 15px;
+}
+
+.main {
+    width: 65%;
+    float: left;
+    padding: 15px;
+}
+
+
+#map-canvas {
+  margin: 0;
+  padding: 0;
+  height: 400px;
+    width: 600px;
+}
+
+.container {
+    align-content: center;
+    align-items: center;
+}
+
+#shopsInCity{
+    background-color: lightblue;
+}
+
+.google_maps{
+    margin-left: 15% ;
+}

@@ -1,6 +1,7 @@
 from flask_api import FlaskAPI
 from flask_cors import CORS
 from flask import request
+from flask import Response
 import sys
 import uuid
 import datetime
@@ -30,7 +31,7 @@ def get_shops():
 
 @app.route('/search/', methods=['POST'])
 def start_searching():
-    id = uuid.uuid4()
+    id = str(uuid.uuid4())
     json_request = request.get_json()
     radius = float(json_request['radius'])
     start = json_request['start']
@@ -39,11 +40,23 @@ def start_searching():
 
     current_datetime = datetime.datetime.now()
 
-    # TODO zmienić stringa NEW na enuma
-    db.insert_finding_results(id, str(json_request), "NEW", current_datetime, current_datetime)
+    # TODO zmienić stringa 0 na enuma
+    db.insert_finding_results(id, str(json_request), 0, current_datetime, current_datetime)
 
     # TODO rozpoczęcie wyszukiwania w nowym wątku
     # thread = Thread(target=__funkcja_wyszukująca__)
     # thread.start()
 
     return id
+
+
+@app.route('/rerun-search/', methods=['GET'])
+def rerun_searching():
+    id = request.args.get('id')
+
+    status = db.get_processing_element_status(id)
+
+    if not status:
+        return Response(status=412)
+    else:
+        return status

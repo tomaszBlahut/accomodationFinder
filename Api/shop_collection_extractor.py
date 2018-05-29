@@ -3,7 +3,7 @@ import dataset
 import json
 
 
-def getShopCollectionWithinRange(center_longitude, center_latitude, radius):
+def get_shop_collection_within_range(center_longitude, center_latitude, radius):
     with open('config/config.json') as json_data:
         config = json.load(json_data)
     db_config = config["database"]

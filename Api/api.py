@@ -4,7 +4,7 @@ from flask import request
 import sys
 
 sys.path.append(".")
-import db_extractor
+import shop_collection_extractor
 
 app = FlaskAPI(__name__)
 CORS(app)
@@ -21,4 +21,4 @@ def get_shops():
     center_longitude = float(request.args.get('longitude'))
     radius = float(request.args.get('radius'))
 
-    return db_extractor.getShopCollectionWithinRange(center_longitude, center_latitude, radius)
+    return shop_collection_extractor.get_shop_collection_within_range(center_longitude, center_latitude, radius)

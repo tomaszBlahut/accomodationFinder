@@ -52,3 +52,14 @@ class HaversineFormula:
                                                                  ang_dist, bearing)
 
         return end_longitude, end_latitude
+
+    @staticmethod
+    def calculate_square_limitations(center_longitude, center_latitude, radius):
+        coordinates = HaversineFormula.calculate_square_bounds(center_longitude, center_latitude, radius)
+
+        max_latitude = coordinates['up']['latitude']
+        min_latitude = coordinates['down']['latitude']
+        max_longitude = coordinates['right']['longitude']
+        min_longitude = coordinates['left']['longitude']
+
+        return max_latitude, min_latitude, max_longitude, min_longitude

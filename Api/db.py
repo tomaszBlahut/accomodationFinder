@@ -1,5 +1,6 @@
 import json
 import psycopg2
+import dataset
 
 with open('config/config.json') as json_data:
     config = json.load(json_data)
@@ -22,3 +23,16 @@ def execute(query):
     finally:
         if conn is not None:
             conn.close()
+
+
+def insert_finding_results(id, request_params, status, created_date, updated_date):
+    # TODO wydzielić poniższe rzeczy do metody i jej użyć tutaj oraz w shop_collection_extractor (zwrócić parę database_url, schema)
+    database_url = 'postgresql://' + db_config['username'] + ":" + db_config['password'] + "@" + db_config[
+        'host'] + "/" + db_config['db_name']
+    schema = db_config['schema']
+
+    with dataset.connect(database_url, schema) as database:
+        finding_results_table = database['finding_results']
+        data = dict(id=id, request_params=request_params, status=status, result="", created_date=created_date,
+                    updated_date=updated_date)
+        finding_results_table.insert(data)

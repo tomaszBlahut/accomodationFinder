@@ -3,8 +3,6 @@ function send_data()
     var prepared_data = {
             radius: document.myform.radius_input.value,
             start: {
-                        //latitude: google.maps.event.lat(),
-                       // longitude: google.maps.event.lng()
                     latitude: 50.049683,
                     longitude: 19.944544
                     },

@@ -12,6 +12,7 @@ function send_data()
             },
             mesh_density: document.myform.mesh_density.value
 
+
         };
 
     $.ajax({

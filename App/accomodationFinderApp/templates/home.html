@@ -8,6 +8,7 @@
     <script src="{% static "js/jquery.min.js" %}"></script>
     <script src="{% static "js/google-api.js" %}"></script>
     <script src="{% static "js/view-for-shops.js" %}"></script>
+    <script src="{% static "js/send-data.js" %}"></script>
 </head>
 
 <body>
@@ -20,12 +21,16 @@
 
     <div class="menu">
 
-        <div class="google_maps">
-            <input id="addressinput" type="address" placeholder="Radius..." />
-            <input id="Button1" class="button button5" type="button" value="Upload" onclick="" />
-        </div>
-        <div id="shopsInCity">
+        <FORM NAME="myform">
+            <input id="radius_input" name="radius_input" type="address" placeholder="Radius..." />
+            <input id="shop_importance" name="shop_importance" type="address" placeholder="Wage of shops..." />
+            <input id="church_importance" name="church_importance" type="address" placeholder="Wage of churchs..." />
+            <input id="mesh_density" name="mesh_density" type="address" placeholder="Mesh density..." />
+          <input TYPE="button" NAME="button" Value="Upload" onClick="send_data()">
 
+
+        </FORM>
+        <div id="shopsInCity">
         </div>
     </div>
 
@@ -49,7 +54,7 @@
         <h1>Find shop in your city</h1>
             <div class="shops" >
                 <input id="addressinput" type="address" placeholder="City..."/>
-                <input id="Button1" class="button button5" type="button" value="Upload" onclick="show_shops()" />
+                <input class="button" type="button" value="Upload" onclick="show_shops()" />
             </div>
 
     </div>

@@ -9,3 +9,4 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['number_list'] = self.number_list
         return context
+

@@ -9,6 +9,44 @@
     <script src="{% static "js/google-api.js" %}"></script>
     <script src="{% static "js/view-for-shops.js" %}"></script>
     <script src="{% static "js/send-data.js" %}"></script>
+    <script src="{% static "js/set-id.js" %}"></script>
+    <script src="{% static "js/check-status.js" %}"></script>
+    <script src="{% static "js/new-map.js" %}"></script>
+    <!--google visualization to heatmap-->
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>
+
+    <style>
+      /* For now style is here. I will add it to the layout.css */
+      #map {
+        height: 400px;
+          width: 50%;
+          align-content: center;
+          margin-left: 25%;
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        left: 25%;
+        z-index: 5;
+        padding: 5px;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        left: 35%;
+        padding: 5px;
+        position: absolute;
+        bottom: 0px;
+        z-index: 5;
+      }
+    </style>
 </head>
 
 <body>
@@ -26,13 +64,29 @@
             <input id="shop_importance" name="shop_importance" type="address" placeholder="Wage of shops..." />
             <input id="church_importance" name="church_importance" type="address" placeholder="Wage of churchs..." />
             <input id="mesh_density" name="mesh_density" type="address" placeholder="Mesh density..." />
-          <input TYPE="button" NAME="button" Value="Upload" onClick="send_data()">
+          <input TYPE="button" NAME="button" Value="Upload" onClick="send_data()"/>
+            <input name="show_table" type="hidden" value="UUID"/>
+            <!--don't know why it is visible-->
+            <div id="wait" class="hidden">
 
+            </div>
+            <div id="search" class="hidden">
 
+            </div>
+            <div id="error" class="hidden">
+
+            </div>
+            <!-- I think it is unnecessary
+            <button onclick="set_id()">Try it</button>
+            <p id="set_id"></p>
+            -->
         </FORM>
+
         <div id="shopsInCity">
         </div>
     </div>
+
+
 
     <div class="main">
         <div class="container" >
@@ -50,7 +104,7 @@
             </table>
         </div>
     </div>
-    <div>
+    <div class="space" style="margin: 30px">
         <h1>Find shop in your city</h1>
             <div class="shops" >
                 <input id="addressinput" type="address" placeholder="City..."/>
@@ -58,7 +112,13 @@
             </div>
 
     </div>
-
+    <div id="floating-panel">
+      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+    </div>
+    <div id="map"></div>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?libraries=visualization&callback=initMap">
+    </script>
 
 </body>
 </html>

@@ -15,15 +15,14 @@ function send_data()
         };
 
     $.ajax({
-        url: 'http://127.0.0.1:5000/',
+        url: 'http://127.0.0.1:5000/search/',
         type: 'POST',
-
         data: prepared_data,
         contentType: 'application/json; charset=utf-8',
         dataType: 'JSON',
         async: false,
-        success: function(data) {
-            alert(data);
+        success: function() {
+            Location.replace(url);
         }
     });
 

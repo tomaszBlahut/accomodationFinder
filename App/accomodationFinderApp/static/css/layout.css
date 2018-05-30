@@ -32,6 +32,7 @@ li a {
         background-color: #111;
     }
 
+
 .button {
     background-color: white;
     border: 2px solid #555555;
@@ -82,6 +83,8 @@ input[type=address]:focus {
     border: 3px solid #555;
 }
 
+
+
 .shops{
     width: 30%;
     margin: 0 auto;
@@ -90,8 +93,20 @@ input[type=address]:focus {
     box-sizing: border-box;
 }
 
-.addressinput {
-    width: 20px;
+#radius_input {
+    width: 150px;
+}
+
+#shop_importance{
+    width: 150px;
+}
+
+#church_importance{
+    width: 150px;
+}
+
+#mesh_density{
+    width: 150px;
 }
 
 .menu {
@@ -126,3 +141,4 @@ input[type=address]:focus {
 .google_maps{
     margin-left: 15% ;
 }
+

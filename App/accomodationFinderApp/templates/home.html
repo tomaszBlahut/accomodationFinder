@@ -9,7 +9,6 @@
     <script src="{% static "js/google-api.js" %}"></script>
     <script src="{% static "js/view-for-shops.js" %}"></script>
     <script src="{% static "js/send-data.js" %}"></script>
-    <script src="{% static "js/set-id.js" %}"></script>
     <script src="{% static "js/check-status.js" %}"></script>
     <script src="{% static "js/new-map.js" %}"></script>
     <!--google visualization to heatmap-->
@@ -71,15 +70,13 @@
 
             </div>
             <div id="search" class="hidden">
-
+                Oh no!
             </div>
             <div id="error" class="hidden">
 
             </div>
-            <!-- I think it is unnecessary
-            <button onclick="set_id()">Try it</button>
-            <p id="set_id"></p>
-            -->
+            <button onclick="check_status()">Try it</button>
+
         </FORM>
 
         <div id="shopsInCity">

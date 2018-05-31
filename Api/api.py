@@ -5,6 +5,7 @@ from flask import Response
 import sys
 import uuid
 import datetime
+import json
 from threading import Thread
 
 sys.path.append(".")
@@ -29,34 +30,39 @@ def get_shops():
     return shop_collection_extractor.get_shop_collection_within_range(center_longitude, center_latitude, radius)
 
 
-@app.route('/search/', methods=['POST'])
-def start_searching():
-    id = str(uuid.uuid4())
-    json_request = request.get_json()
-    radius = float(json_request['radius'])
-    start = json_request['start']
-    wages = json_request['wages']
-    mesh_density = float(json_request['mesh_density'])
-
+def start_new_searching(result_id, json_request, status_value):
     current_datetime = datetime.datetime.now()
 
-    # TODO zmienić stringa 0 na enuma
-    db.insert_finding_results(id, str(json_request), 0, current_datetime, current_datetime)
+    db.insert_finding_results(result_id, json_request, status_value, current_datetime, current_datetime)
 
     # TODO rozpoczęcie wyszukiwania w nowym wątku
     # thread = Thread(target=__funkcja_wyszukująca__)
     # thread.start()
 
-    return id
+
+@app.route('/search/', methods=['POST'])
+def start_searching():
+    result_id = str(uuid.uuid4())
+    json_request = request.get_json()
+
+    # TODO zmienić 0 na enuma
+    start_new_searching(result_id, str(json_request), 0)
+
+    return result_id
 
 
 @app.route('/rerun-search/', methods=['GET'])
 def rerun_searching():
-    id = request.args.get('id')
+    result_id = request.args.get('id')
 
-    status = db.get_processing_element_status(id)
+    request_params = db.get_processing_element_request_params(result_id)
 
-    if not status:
+    if not request_params:
         return Response(status=412)
-    else:
-        return status
+
+    new_result_id = str(uuid.uuid4())
+
+    # TODO zmienić 1 na enuma
+    start_new_searching(new_result_id, request_params, 1)
+
+    return new_result_id

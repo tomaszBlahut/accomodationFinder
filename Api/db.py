@@ -26,34 +26,24 @@ def execute(query):
             conn.close()
 
 
-def insert_finding_results(id, request_params, status, created_date, updated_date):
-    # TODO wydzielić poniższe rzeczy do metody i jej użyć tutaj oraz w shop_collection_extractor (zwrócić parę database_url, schema)
+def get_database_connection_params():
     database_url = 'postgresql://' + db_config['username'] + ":" + db_config['password'] + "@" + db_config[
         'host'] + "/" + db_config['db_name']
     schema = db_config['schema']
+    return database_url, schema
 
-    with dataset.connect(database_url, schema) as database:
+
+def insert_finding_results(id, request_params, status, created_date, updated_date):
+    with dataset.connect(*get_database_connection_params()) as database:
         finding_results_table = database['finding_results']
         data = dict(id=id, request_params=request_params, status=status, result="", created_date=created_date,
                     updated_date=updated_date)
         finding_results_table.insert(data)
 
 
-def get_processing_element_status(id):
-    # TODO wydzielić poniższe rzeczy do metody i jej użyć tutaj oraz w shop_collection_extractor (zwrócić parę database_url, schema)
-    database_url = 'postgresql://' + db_config['username'] + ":" + db_config['password'] + "@" + db_config[
-        'host'] + "/" + db_config['db_name']
-    schema = db_config['schema']
-
+def get_processing_element_request_params(id):
     id = id.replace("/", "")
 
-    with dataset.connect(database_url, schema) as database:
-        arr = []
-        stmt = database.query("SELECT * FROM pite.finding_results WHERE id='" + id + "'")
-        for row in stmt:
-            arr.append(row)
-
-    if len(arr) == 0:
-        return False
-    else:
-        return str(arr[0]['status'])
+    with dataset.connect(*get_database_connection_params()) as database:
+        row_from_id = dataset.Table(database, 'finding_results').find_one(id=id)
+    return row_from_id['request_params']

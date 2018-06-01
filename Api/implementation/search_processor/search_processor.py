@@ -1,7 +1,6 @@
+import numpy
 from ..models.search_state import SearchState
 from ..models.request_parameters import RequestParameters
-from math import cos
-import numpy
 from ..haversine_formula.haversine_formula import HaversineFormula
 from ..shop_dal import get_shop_collection_within_range
 from ..search_results_dal import update_search_result_status, update_search_result_output

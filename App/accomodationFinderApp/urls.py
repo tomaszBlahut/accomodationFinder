@@ -4,10 +4,9 @@ from django.contrib import admin
 
 from . import views
 from . import home
-from . import place
+from . import result
 
 urlpatterns = [
     path('', home.HomeView.as_view(), name='index'),
-    path('/<int:UUID>', place.HomeView2.as_view(), name='place')
+    path('result/<uuid:id>', result.ResultView.as_view(), name='result')
 ]
-

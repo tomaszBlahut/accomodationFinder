@@ -1,86 +1,24 @@
+{% extends "base.html" %}
 {% load static %}
-<!--<!DOCTYPE html>-->
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static "css/layout.css" %}" />
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-    <script src="{% static "js/jquery.min.js" %}"></script>
-    <script src="{% static "js/google-api.js" %}"></script>
+
+{% block head_content %}
     <script src="{% static "js/view-for-shops.js" %}"></script>
     <script src="{% static "js/send-data.js" %}"></script>
     <script src="{% static "js/check-status.js" %}"></script>
     <script src="{% static "js/new-map.js" %}"></script>
-    <!--google visualization to heatmap-->
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>
+{% endblock %}
 
-    <style>
-      /* For now style is here. I will add it to the layout.css */
-      #map {
-        height: 400px;
-          width: 50%;
-          align-content: center;
-          margin-left: 25%;
-      }
-
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #floating-panel {
-        position: absolute;
-        left: 25%;
-        z-index: 5;
-        padding: 5px;
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-      }
-      #floating-panel {
-        left: 35%;
-        padding: 5px;
-        position: absolute;
-        bottom: 0px;
-        z-index: 5;
-      }
-    </style>
-</head>
-
-<body>
-    <ul>
-        <li><a class="active" href="#home">Accomodation Finder</a></li>
-    </ul>
-    <div>
-        <h1>Welcome to Accomodation Finder</h1>
-    </div>
-
+{% block main_content %}
     <div class="menu">
 
         <FORM NAME="myform">
-            <input id="radius_input" name="radius_input" type="address" placeholder="Radius..." />
-            <input id="shop_importance" name="shop_importance" type="address" placeholder="Wage of shops..." />
-            <input id="church_importance" name="church_importance" type="address" placeholder="Wage of churchs..." />
-            <input id="mesh_density" name="mesh_density" type="address" placeholder="Mesh density..." />
-          <input TYPE="button" NAME="button" Value="Upload" onClick="send_data()"/>
-            <input name="show_table" type="hidden" value="UUID"/>
-            <!--don't know why it is visible-->
-            <div id="wait" class="hidden">
+            <input id="radius_input" name="radius_input" type="number" placeholder="Radius..." />
+            <div id="wagesContainer">
 
             </div>
-            <div id="search" class="hidden">
-                Oh no!
-            </div>
-            <div id="error" class="hidden">
-
-            </div>
-            <button onclick="check_status()">Try it</button>
-
+            <input id="mesh_density" name="mesh_density" type="number" placeholder="Mesh density..." />
+            <input type="button" name="button" value="Upload" id="sendButton"/>
         </FORM>
-
-        <div id="shopsInCity">
-        </div>
     </div>
 
 
@@ -90,7 +28,9 @@
             <table>
                 <tr>
                     <td>
-                       <div class="container"><input id="pac-input" class="controls" type="text" placeholder="Search Box"></div>
+                       <div class="container">
+                           <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -101,21 +41,5 @@
             </table>
         </div>
     </div>
-    <div class="space" style="margin: 30px">
-        <h1>Find shop in your city</h1>
-            <div class="shops" >
-                <input id="addressinput" type="address" placeholder="City..."/>
-                <input class="button" type="button" value="Upload" onclick="show_shops()" />
-            </div>
+{% endblock %}
 
-    </div>
-    <div id="floating-panel">
-      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-    </div>
-    <div id="map"></div>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?libraries=visualization&callback=initMap">
-    </script>
-
-</body>
-</html>

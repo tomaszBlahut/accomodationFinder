@@ -1,7 +1,7 @@
 import json
 import dataset
 
-with open('config/config.json') as json_data:
+with open('implementation/config/config.json') as json_data:
     config = json.load(json_data)
 
 db_config = config["database"]

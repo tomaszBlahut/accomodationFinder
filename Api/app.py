@@ -6,10 +6,10 @@ import sys
 import uuid
 import datetime
 from threading import Thread
-
-sys.path.append(".")
-import shop_collection_extractor
-import db
+import implementation.shop_collection_extractor
+import implementation.db
+from implementation.searchProcessor.searchState import SearchState
+from implementation.searchProcessor.searchProcessor import SearchProcessor
 
 app = FlaskAPI(__name__)
 CORS(app)
@@ -39,8 +39,7 @@ def start_searching():
     result_id = str(uuid.uuid4())
     json_request = request.get_json()
 
-    # TODO zmienić 0 na enuma
-    start_new_searching(result_id, str(json_request), 0)
+    start_new_searching(result_id, str(json_request), SearchState.NEW)
 
     return result_id
 
@@ -56,7 +55,9 @@ def rerun_searching():
 
     new_result_id = str(uuid.uuid4())
 
-    # TODO zmienić 1 na enuma
-    start_new_searching(new_result_id, request_params, 1)
+    start_new_searching(new_result_id, request_params, SearchState.NEW)
 
     return new_result_id
+
+if __name__ == '__main__':
+    app.run(debug=True)

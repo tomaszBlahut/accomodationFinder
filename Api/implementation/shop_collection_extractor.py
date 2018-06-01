@@ -1,4 +1,4 @@
-from haversine_formula.haversine_formula import HaversineFormula
+from .haversine_formula.haversine_formula import HaversineFormula
 import dataset
 import json
 

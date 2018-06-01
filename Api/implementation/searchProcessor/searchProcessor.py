@@ -1,9 +1,7 @@
-from searchState import SearchState
+from .searchState import SearchState
 from math import cos
 import numpy
-import sys
-sys.path.append("../haversine_formula")
-from haversine_formula import HaversineFormula
+from ..haversine_formula.haversine_formula import HaversineFormula
 
 
 class Expandable:

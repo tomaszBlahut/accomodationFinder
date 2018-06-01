@@ -9,7 +9,7 @@ from implementation.shop_dal import get_shop_collection_within_range
 from implementation.search_results_dal import insert_finding_results, get_processing_element_request_params, get_search_results
 from implementation.models.search_state import SearchState
 from implementation.search_processor.search_processor import SearchProcessor
-from implementation.datetime_encoder import DateTimeEncoder
+from implementation.encoders.datetime_encoder import DateTimeEncoder
 
 app = FlaskAPI(__name__)
 CORS(app)

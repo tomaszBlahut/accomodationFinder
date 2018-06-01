@@ -2,7 +2,7 @@ import dataset
 import datetime
 import json
 from .db import get_database_connection_params
-from .numpy_encoder import NumpyEncoder
+from .encoders.numpy_encoder import NumpyEncoder
 
 
 def insert_finding_results(result_id, request_params, status):

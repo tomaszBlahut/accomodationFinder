@@ -12,12 +12,14 @@
     <div class="menu">
 
         <FORM NAME="myform">
-            <input id="radius_input" name="radius_input" type="number" placeholder="Radius..." />
+            <input id="radiusInput" name="radiusInput" type="number" placeholder="Radius..." />
             <div id="wagesContainer">
 
             </div>
-            <input id="mesh_density" name="mesh_density" type="number" placeholder="Mesh density..." />
-            <input type="button" name="button" value="Upload" id="sendButton"/>
+            <input type="hidden" id="latitude" name="latitude"/>
+            <input type="hidden" id="longitude" name="longitude"/>
+            <input id="meshDensity" name="meshDensity" type="number" placeholder="Mesh density..." />
+            <input type="button" name="button" value="Start search" id="sendButton"/>
         </FORM>
     </div>
 

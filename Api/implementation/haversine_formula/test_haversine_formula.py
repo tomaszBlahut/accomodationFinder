@@ -1,6 +1,7 @@
 from unittest import TestCase
 from haversine_formula.haversine_formula import HaversineFormula
 
+
 class TestHaversineFormula(TestCase):
     def test_calculate_distance_beetween_two_points(self):
         hav = HaversineFormula.calculate_distance_beetween_two_points(-86.67, -118.40, 36.12, 33.94)

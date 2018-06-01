@@ -5,7 +5,6 @@ from flask import Response
 import sys
 import uuid
 import datetime
-import json
 from threading import Thread
 
 sys.path.append(".")
@@ -14,11 +13,6 @@ import db
 
 app = FlaskAPI(__name__)
 CORS(app)
-
-
-@app.route('/example/', methods=['GET'])
-def example():
-    return {'Hello, ': 'world!'}
 
 
 @app.route('/shop/', methods=['GET'])

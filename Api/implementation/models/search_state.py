@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import IntEnum
 
 
-class SearchState(Enum):
+class SearchState(IntEnum):
     NEW = 1,
     PROCESSING = 2,
     COMPLETED = 3,

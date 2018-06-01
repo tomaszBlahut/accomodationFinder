@@ -9,10 +9,10 @@ create table pite.shop (
 );
 
 create table pite.finding_results (
-  id PRIMARY KEY,
+  id VARCHAR PRIMARY KEY,
   request_params VARCHAR(512),
   status INTEGER,
   result VARCHAR,
-  created_date DATE,
-  updated_date DATE
+  created_date TIMESTAMP,
+  updated_date TIMESTAMP
 );

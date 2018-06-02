@@ -23,9 +23,9 @@ def get_shops(center_latitude, center_longitude, radius):
                                              center_latitude,
                                              radius)
 
-    response = {"shops": shops}
+    response = json.dumps({"shops": shops})
 
-    return Response(json.dumps(response), 200, mimetype=json_mimetype)
+    return Response(response, 200, mimetype=json_mimetype)
 
 
 @app.route('/shopTypes', methods=['POST'])
@@ -33,18 +33,18 @@ def get_shops_types_by_area():
     area_bounds = request.get_json()
     shops = get_shop_names_within_area_bounds(area_bounds)
 
-    response = {"shops": shops}
+    response = json.dumps({"shops": shops})
 
-    return Response(json.dumps(response), 200, mimetype=json_mimetype)
+    return Response(response, 200, mimetype=json_mimetype)
 
 
 @app.route('/shopTypes', methods=['GET'])
 def get_all_shops_types():
     shops = get_all_shop_types()
 
-    response = {"shops": shops}
+    response = json.dumps({"shops": shops})
 
-    return Response(json.dumps(response), 200, mimetype=json_mimetype)
+    return Response(response, 200, mimetype=json_mimetype)
 
 
 def start_new_searching(result_id, json_request, status_value):
@@ -85,4 +85,6 @@ def rerun_searching(result_id):
 def get_results(id):
     results = get_search_results(id)
 
-    return Response(json.dumps(results, cls=DateTimeEncoder), 200, mimetype=json_mimetype)
+    response = json.dumps(results, cls=DateTimeEncoder)
+
+    return Response(response, 200, mimetype=json_mimetype)

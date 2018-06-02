@@ -100,23 +100,23 @@ input[type="range"] {
 }
 
 .menu {
-    width: 35%;
+    width: 20%;
     float: left;
-    padding: 15px;
+    padding: 20px 5%;
+    margin: auto;
 }
 
 .main {
-    width: 65%;
+    width: 80%;
     float: left;
-    padding: 15px;
+    padding: 20px 10%;
 }
 
 
 #map-canvas {
-  margin: 0;
-  padding: 0;
-  height: 400px;
-    width: 600px;
+  margin: auto;
+  height: 75%;
+  width: auto;  
 }
 
 .container {
@@ -132,12 +132,6 @@ input[type="range"] {
     margin-left: 15% ;
 }
 
-#map {
-    height: 400px;
-      width: 50%;
-      align-content: center;
-      margin-left: 25%;
-  }
 
   html, body {
     height: 100%;

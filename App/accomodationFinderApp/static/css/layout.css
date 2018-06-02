@@ -56,9 +56,8 @@ li a {
 
 input {
     display: block;
-    width: 50%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 8px auto;
     box-sizing: border-box;
     border: 3px solid #ccc;
     -webkit-transition: 0.5s;
@@ -68,6 +67,10 @@ input {
 
 input {
     border: 3px solid #555;
+}
+
+input[type="range"] {
+    padding: 12px 0px;
 }
 
 
@@ -157,4 +160,17 @@ input {
     position: absolute;
     bottom: 0px;
     z-index: 5;
+  }
+
+  .hidden {
+      display: none;
+  }
+
+  .info {
+      display: block;
+      font-size: 30pt;
+  }
+
+  .statusContainer {
+      text-align: center;
   }

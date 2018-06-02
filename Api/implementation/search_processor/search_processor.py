@@ -1,8 +1,7 @@
 import numpy
 from ..models.search_state import SearchState
 from ..models.request_parameters import RequestParameters
-from ..haversine_formula.haversine_formula import HaversineFormula
-from ..shop_dal import get_shop_collection_within_range
+from ..shop_dal import get_shop_collection_within_area_bounds
 from ..search_results_dal import update_search_result_status, update_search_result_output
 
 
@@ -19,7 +18,7 @@ class SearchProcessor:
 
         wage = 1.0
         try:
-            wage = wages[shop["name"]]
+            wage = float(wages[shop["name"]])
         except KeyError:
             pass
 
@@ -49,24 +48,18 @@ class SearchProcessor:
 
         request_parameters = RequestParameters(json_request_parameters)
 
-        shops = get_shop_collection_within_range(request_parameters.start["longitude"],
-                                                 request_parameters.start["latitude"],
-                                                 request_parameters.radius)
+        shops = get_shop_collection_within_area_bounds(request_parameters.area_bounds)
+
         wages = request_parameters.wages
 
         try:
-            square_bounds = HaversineFormula.calculate_square_bounds(
-                request_parameters.start["longitude"],
-                request_parameters.start["latitude"],
-                request_parameters.radius)
-
             latitude_points = numpy.linspace(
-                square_bounds["up"]["latitude"],
-                square_bounds["down"]["latitude"],
+                request_parameters.area_bounds["north"],
+                request_parameters.area_bounds["south"],
                 request_parameters.mesh_density)
             longitude_points = numpy.linspace(
-                square_bounds["left"]["longitude"],
-                square_bounds["right"]["longitude"],
+                request_parameters.area_bounds["west"],
+                request_parameters.area_bounds["east"],
                 request_parameters.mesh_density)
 
             values = numpy.zeros((len(latitude_points),
@@ -90,9 +83,9 @@ class SearchProcessor:
             return values
 
         except Exception as exception:
+            update_search_result_status(id, SearchState.FAILED)
+
             results = {"type": str(type(exception)),
                        "args": exception.args,
                        "message": str(exception)}
-            update_search_result_output(id, results)
-
-            update_search_result_status(id, SearchState.FAILED)
+            update_search_result_output(id, results)            

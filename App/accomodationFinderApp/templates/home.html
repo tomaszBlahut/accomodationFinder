@@ -2,28 +2,25 @@
 {% load static %}
 
 {% block head_content %}
-    <script src="{% static "js/view-for-shops.js" %}"></script>
+    <script src="{% static "js/home-scripts.js" %}"></script>   
     <script src="{% static "js/send-data.js" %}"></script>
-    <script src="{% static "js/check-status.js" %}"></script>
-    <script src="{% static "js/new-map.js" %}"></script>
 {% endblock %}
 
 {% block main_content %}
     <div class="menu">
 
-        <FORM NAME="myform">
-            <input id="radiusInput" name="radiusInput" type="number" placeholder="Radius..." />
+        <form name="searchForm">
+            <input id="radiusInput" name="radiusInput" type="number" placeholder="Radius..." readonly />
             <div id="wagesContainer">
 
             </div>
             <input type="hidden" id="latitude" name="latitude"/>
             <input type="hidden" id="longitude" name="longitude"/>
+            <input type="hidden" id="areaBounds" name="areaBounds"/>
             <input id="meshDensity" name="meshDensity" type="number" placeholder="Mesh density..." />
             <input type="button" name="button" value="Start search" id="sendButton"/>
-        </FORM>
+        </form>
     </div>
-
-
 
     <div class="main">
         <div class="container" >
@@ -31,7 +28,7 @@
                 <tr>
                     <td>
                        <div class="container">
-                           <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                           <input id="pac-input" class="controls" type="text" placeholder="Type place to search">
                         </div>
                     </td>
                 </tr>

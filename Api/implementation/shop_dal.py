@@ -21,3 +21,40 @@ def get_shop_collection_within_range(center_longitude, center_latitude, radius):
                 shops.append(shop)
 
     return shops
+
+
+def get_shop_collection_within_area_bounds(area_bounds):
+    max_latitude = area_bounds["north"]
+    min_latitude = area_bounds["south"]
+    max_longitude = area_bounds["east"]
+    min_longitude = area_bounds["west"]
+
+    shops_collection = []
+    with dataset.connect(*get_database_connection_params()) as database:
+        table = database['shop']
+        shops = table.find(min_longitude <= table.table.columns.longitude, table.table.columns.longitude <= max_longitude, min_latitude <= table.table.columns.latitude, table.table.columns.latitude <= max_latitude)
+        shops_collection = [*shops]
+
+    return shops_collection
+
+
+def get_shop_names_within_area_bounds(area_bounds):
+    max_latitude = area_bounds["north"]
+    min_latitude = area_bounds["south"]
+    max_longitude = area_bounds["east"]
+    min_longitude = area_bounds["west"]
+
+    with dataset.connect(*get_database_connection_params()) as database:
+        table = database['shop']
+        shops = table.distinct('name', min_longitude <= table.table.columns.longitude, table.table.columns.longitude <= max_longitude, min_latitude <= table.table.columns.latitude, table.table.columns.latitude <= max_latitude)
+        types_of_shops = [*shops]
+
+    return types_of_shops
+
+
+def get_all_shop_types():
+    with dataset.connect(*get_database_connection_params()) as database:
+        shops = database['shop'].distinct('name')
+        types_of_shops = [*shops]
+
+    return types_of_shops

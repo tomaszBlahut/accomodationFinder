@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static "css/layout.css" %}" />
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-    <script src="{% static "js/jquery.min.js" %}"></script>
-    <script src="{% static "js/google-api.js" %}"></script>
     <script type="text/javascript">
         var settings = {{ APP_SETTINGS|safe }};
-    </script>  
+    </script>
+    <script src="{% static "js/jquery.min.js" %}"></script>    
     {% block head_content %}{% endblock %}
 </head>
 
 <body>
     <ul>
-        <li><a class="active" href="#home">Accomodation Finder</a></li>
+        <li><a class="active" href="/">Accomodation Finder</a></li>
     </ul>
     <div>
         <h1>{% block title_content %}Welcome to Accomodation Finder{% endblock %}</h1>

@@ -9,6 +9,7 @@ function handleCheckStatusResponse(response) {
     } else if (response.status == 4) {
         $("#processing").removeClass('hidden');
     } else if (response.status == 3) {
+        createHeatMap(response);
         $("#success").removeClass('hidden');
     }
 }

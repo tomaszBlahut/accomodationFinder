@@ -5,6 +5,8 @@
 <script type="text/javascript">
     var currentId = "{{ id }}";
 </script>
+<script src="{% static "js/number-to-color.js" %}"></script>
+<script src="{% static "js/create-heatmap.js" %}"></script>
 <script src="{% static "js/result-scripts.js" %}"></script>
 {% endblock %}
 
@@ -27,6 +29,6 @@ Results of Accomodation Finder request
     <button id="rerunButton">Click here to run your search request again</button>
 </div>
 <div id="success" class="statusContainer hidden">
-    Success!
+    <div class="container" id="map-canvas"></div>
 </div>
 {% endblock %}

@@ -53,14 +53,16 @@ class SearchProcessor:
         wages = request_parameters.wages
 
         try:
-            latitude_points = numpy.linspace(
-                request_parameters.area_bounds["north"],
+            latitude_points, latitude_step = numpy.linspace(
                 request_parameters.area_bounds["south"],
-                request_parameters.mesh_density)
-            longitude_points = numpy.linspace(
+                request_parameters.area_bounds["north"],
+                request_parameters.mesh_density,
+                retstep=True)
+            longitude_points, longitude_step = numpy.linspace(
                 request_parameters.area_bounds["west"],
                 request_parameters.area_bounds["east"],
-                request_parameters.mesh_density)
+                request_parameters.mesh_density,
+                retstep=True)
 
             values = numpy.zeros((len(latitude_points),
                                   len(longitude_points)))
@@ -72,10 +74,18 @@ class SearchProcessor:
                                                           longitude_points,
                                                           values)
 
-            results = {"values": values,
+            min_value = numpy.amin(values)
+            values = numpy.add(values, -min_value)
+
+            max_value = numpy.amax(values)
+            normalized_values = numpy.multiply(values, 1/max_value)
+
+            results = {"values": normalized_values,
                        "latitudes": latitude_points,
                        "longitudes": longitude_points,
-                       "mesh_density": request_parameters.mesh_density}
+                       "mesh_density": request_parameters.mesh_density,
+                       "latitude_step": latitude_step,
+                       "longitude_step": longitude_step}
             update_search_result_output(id, results)
 
             update_search_result_status(id, SearchState.COMPLETED)

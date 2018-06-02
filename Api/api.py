@@ -2,61 +2,68 @@ from flask_api import FlaskAPI
 from flask_cors import CORS
 from flask import request
 from flask import Response
-import sys
+import json
 import uuid
-import datetime
 from threading import Thread
-
-sys.path.append(".")
-import shop_collection_extractor
-import db
+from implementation.shop_dal import get_shop_collection_within_range
+from implementation.search_results_dal import insert_finding_results, get_processing_element_request_params, get_search_results
+from implementation.models.search_state import SearchState
+from implementation.search_processor.search_processor import SearchProcessor
+from implementation.encoders.datetime_encoder import DateTimeEncoder
 
 app = FlaskAPI(__name__)
 CORS(app)
 
+json_mimetype = 'application/json'
 
-@app.route('/shop/', methods=['GET'])
-def get_shops():
-    center_latitude = float(request.args.get('latitude'))
-    center_longitude = float(request.args.get('longitude'))
-    radius = float(request.args.get('radius'))
 
-    return shop_collection_extractor.get_shop_collection_within_range(center_longitude, center_latitude, radius)
+@app.route('/shop/<float:center_latitude>/<float:center_longitude>/<float:radius>', methods=['GET'])
+def get_shops(center_latitude, center_longitude, radius):
+    shops = get_shop_collection_within_range(center_longitude,
+                                             center_latitude,
+                                             radius)
+
+    response = {"shops": shops}
+
+    return Response(json.dumps(response), 200, mimetype=json_mimetype)
 
 
 def start_new_searching(result_id, json_request, status_value):
-    current_datetime = datetime.datetime.now()
+    insert_finding_results(result_id, json_request, status_value)
 
-    db.insert_finding_results(result_id, json_request, status_value, current_datetime, current_datetime)
-
-    # TODO rozpoczęcie wyszukiwania w nowym wątku
-    # thread = Thread(target=__funkcja_wyszukująca__)
-    # thread.start()
+    thread = Thread(target=SearchProcessor.process_search,
+                    args=(result_id, json_request))
+    thread.start()
 
 
-@app.route('/search/', methods=['POST'])
+@app.route('/search', methods=['POST'])
 def start_searching():
     result_id = str(uuid.uuid4())
     json_request = request.get_json()
 
-    # TODO zmienić 0 na enuma
-    start_new_searching(result_id, str(json_request), 0)
+    start_new_searching(result_id, json.dumps(json_request), SearchState.NEW)    
 
-    return result_id
+    response = json.dumps({"id": result_id})
+    return Response(response, 200, mimetype=json_mimetype)
 
 
-@app.route('/rerun-search/', methods=['GET'])
-def rerun_searching():
-    result_id = request.args.get('id')
-
-    request_params = db.get_processing_element_request_params(result_id)
+@app.route('/rerun-search/<result_id>', methods=['GET'])
+def rerun_searching(result_id):
+    request_params = get_processing_element_request_params(result_id)
 
     if not request_params:
         return Response(status=412)
 
     new_result_id = str(uuid.uuid4())
 
-    # TODO zmienić 1 na enuma
-    start_new_searching(new_result_id, request_params, 1)
+    start_new_searching(new_result_id, request_params, SearchState.NEW)
 
-    return new_result_id
+    response = json.dumps({"id": new_result_id})
+    return Response(response, 200, mimetype=json_mimetype)
+
+
+@app.route('/results/<id>', methods=['GET'])
+def get_results(id):
+    results = get_search_results(id)
+
+    return Response(json.dumps(results, cls=DateTimeEncoder), 200, mimetype=json_mimetype)

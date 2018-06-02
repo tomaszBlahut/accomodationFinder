@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head_content %}
+<script type="text/javascript">
+    var currentId = "{{ id }}";
+</script>
+<script src="{% static "js/result-scripts.js" %}"></script>
+{% endblock %}
+
+{% block title_content %}
+Results of Accomodation Finder request
+{% endblock %}
+
+{% block main_content %}
+<div class="statusContainer">
+    <span class="info">Loading...</span>
+    <img src="{% static "img/gears.svg" %}"/>
+</div>
+<div id="processing" class="statusContainer hidden">
+    <span class="info">Your search request is being processed...</span>
+    <img src="{% static "img/gears.svg" %}"/>
+</div>
+<div id="failed" class="statusContainer hidden">
+    <span class="info">Your search failed. Contact administrator if its not isolated event.</span>
+    <img src="{% static "img/failed.svg" %}"/>
+    <button id="rerunButton">Click here to run your search request again</button>
+</div>
+<div id="success" class="statusContainer hidden">
+    Success!
+</div>
+{% endblock %}

@@ -8,13 +8,13 @@
     <script type="text/javascript">
         var settings = {{ APP_SETTINGS|safe }};
     </script>
-    <script src="{% static "js/jquery.min.js" %}"></script>    
+    <script src="{% static "js/jquery.min.js" %}"></script>
     {% block head_content %}{% endblock %}
 </head>
 
 <body>
     <ul>
-        <li><a class="active" href="/">Accomodation Finder</a></li>
+        <li><a class="active" href="/">Accomodation Finder - Home</a></li>
     </ul>
     <div>
         <h1>{% block title_content %}Welcome to Accomodation Finder{% endblock %}</h1>

@@ -11,7 +11,7 @@
     <div class="menu">
 
         <form name="searchForm" class="searchForm">
-            <input id="radiusInput" name="radiusInput" type="number" placeholder="Radius..." readonly />
+            <input id="radiusInput"  name="radiusInput" type="number" placeholder="Radius..." readonly />
             <div id="wagesContainer">
 
             </div>
@@ -19,7 +19,10 @@
             <input type="hidden" id="longitude" name="longitude"/>
             <input type="hidden" id="areaBounds" name="areaBounds"/>
             <input id="meshDensity" name="meshDensity" type="number" placeholder="Mesh density..." />
-            <input type="button" name="button" value="Start search" id="sendButton"/>
+            <div class="wrap">
+                <input class="clicker" input type="button" name="button" value="Search" id="sendButton"/>
+                <div class="circle angled"></div>
+              </div>
         </form>
     </div>
 

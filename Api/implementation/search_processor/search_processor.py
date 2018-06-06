@@ -19,13 +19,15 @@ class SearchProcessor:
         wage = 1.0
         try:
             wage = float(wages[shop["name"]])
+            if wage == 0:
+                return
         except KeyError:
             pass
 
         for y in range(1, max_longitude_points):
             can_add = longitude_index + y < len(longitudes)
             can_substract = longitude_index - y >= 0
-            value = y * wage
+            value = y * (2520 / wage)
             for z in range(len(latitudes)):
                 if can_add:
                     values[z, longitude_index + y] += value
@@ -35,7 +37,7 @@ class SearchProcessor:
         for x in range(1, max_latitude_points):
             can_add = latitude_index + x < len(latitudes)
             can_substract = latitude_index - x >= 0
-            value = x * wage
+            value = x * (2520 / wage)
             for z in range(len(longitudes)):
                 if can_add:
                     values[latitude_index + x, z] += value

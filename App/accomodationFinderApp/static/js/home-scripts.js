@@ -20,10 +20,10 @@ function createWageInputs(shops) {
       class: 'wageContainer'
     });
     $('<span></span>').text(element.name).appendTo(container);
-    $('<input type="range" />').attr({
+    $('<input type="range"/>').attr({
       name: element.name,
       value: 5,
-      class: 'wage',
+      class: 'wage mdl-slider mdl-js-slider ',
       min: 0,
       max: 10
     }).appendTo(container);

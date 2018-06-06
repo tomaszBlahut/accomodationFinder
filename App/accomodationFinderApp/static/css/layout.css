@@ -1,9 +1,20 @@
 h1 {
     align-content: center;
     text-align: center;
-    margin-top: 0px;
     padding: 20px;
-     background-color:rgba(255, 255, 255, 0.8);
+    background-color:rgba(255, 255, 255, 0.8);
+    font-weight: 200;
+    margin: 0;
+}
+
+.newClass{
+    align-content: center;
+    text-align: center;
+    padding: 10px;
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    font-size: 40px;
+    font-weight: bold;
 }
 
 body {
@@ -26,6 +37,8 @@ ul {
     font-size: 20px;
 }
 
+
+
 li {
     float: left;
     margin-left: 40%;
@@ -38,7 +51,10 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-size: 20px;
 }
+
+
 
     li a:hover {
         background-color: #111;
@@ -59,6 +75,7 @@ li a {
     transition-duration: 0.4s;
     cursor: pointer;
     margin-left: 20px;
+
 }
 
 .button:hover {
@@ -69,7 +86,7 @@ li a {
 input {
     display: block;
     padding: 12px 20px;
-    margin: 8px auto;
+    margin: 10px auto;
     box-sizing: border-box;
     border: 3px solid #ccc;
     -webkit-transition: 0.5s;
@@ -127,7 +144,7 @@ input[type="range"] {
 }
 
 .main {
-    width: 70%;
+    width: 76%;
     float: right;
     padding: 20px 10%;
 }
@@ -136,9 +153,9 @@ input[type="range"] {
     background-color:rgba(255, 255, 255, 0.8);
     width: 250px;
     padding: 20px 5%;
-    border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+    border: 5px solid white;
     height: 75%;
+    font-family: "Times New Roman", Times, serif;
 }
 
 
@@ -146,8 +163,8 @@ input[type="range"] {
   margin: auto;
   height: 75%;
   width: auto;
-    border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+    border: 5px solid white;
+
 }
 
 .container {
@@ -195,8 +212,107 @@ input[type="range"] {
       display: block;
       font-size: 30pt;
       font-weight: bold;
+      margin: 20px;
+      font-family: "Times New Roman", Times, serif;
   }
 
   .statusContainer {
       text-align: center;
   }
+
+.wageContainer{
+    padding: 15px;
+    margin: 5px;
+}
+
+.wrap{
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 20px auto 30px auto;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.clicker{
+  background-color: white;
+  outline: none;
+  font-weight: 600;
+	  position:absolute;
+  cursor: pointer;
+  padding: 0;
+	  border: none;
+	  height: 64px;
+	  width: 64px;
+  left: 8px;
+
+	  border-radius: 100px;
+	  z-index: 2;
+}
+
+.clicker:active{
+	  transform: translate(0, 1px);
+  height: 63px;
+	  box-shadow: 0px 1px 0 0 rgb(190,190,190) inset;
+}
+
+.circle{
+	  position: relative;
+  border-radius:40px;
+	  width: 80px;
+	  height: 80px;
+	  z-index: 1;
+}
+
+.circle.third{
+  border-radius: 0;
+}
+
+.clicker.faster:hover + .circle, .clicker.faster:active + .circle {
+	  animation: rotator linear .4s infinite;
+}
+
+.clicker.fast:hover + .circle, .clicker.fast:active + .circle {
+	  animation: rotator linear .5s infinite;
+}
+
+.clicker:hover + .circle, .clicker:active + .circle {
+	  animation: rotator linear .8s infinite;
+}
+
+@keyframes rotator{
+	  from{ transform: rotate(0deg); }
+	  to{ transform: rotate(360deg); }
+}
+
+
+.angled {
+			background-image: linear-gradient(45deg,
+                white 0%,
+                white 30%,
+                rgb(20,190,235) 30%,
+								rgb(20,190,235) 70%,
+                white 70%,
+                white 100%);
+		}
+
+.angled.second{
+  			background-image: linear-gradient(
+                white 0%,
+                white 30%,
+                rgb(250,160,120) 30%,
+								rgb(250,160,120) 70%,
+                white 70%,
+                white 100%);
+}
+
+.angled.third{
+			background-image: linear-gradient(45deg,
+                white 0%,
+                white 30%,
+                rgb(130,230,135) 30%,
+								rgb(130,230,135) 70%,
+                white 70%,
+                white 100%);
+}
